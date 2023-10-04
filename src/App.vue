@@ -1,18 +1,13 @@
 <template>
   <div id="app">
     <!-- Your HTML content goes here -->
+    <p>Hello. Vue!</p>
   </div>
 </template>
 
 <script>
 export default {
   // Your component logic goes here
-  export default {
-    name: app,
-    components: {
-      
-    }
-  }
 };
 </script>
 
