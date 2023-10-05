@@ -52,7 +52,7 @@ export default {
 
 <style>
 * {
-  margin: 0px;
+  margin: 0;
 }
 /* Your CSS styles go here */
 #app {

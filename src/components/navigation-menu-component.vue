@@ -1,23 +1,37 @@
 <template>
   <div class="navigation-menu-component">
     <!-- Logo Container -->
-    <div class="logo-container">
+    <router-link to="/">
       <!-- logo -->
-      <img src="/path/to/logo.png" alt="Логотип" class="logo" />
-    </div>
+      <div class="logo-container">
+        <img src="../assets/food-online-logo.png" alt="logo" class="logo" />
+      </div>
+    </router-link>
     <!-- Navigation Container -->
 
     <div class="navigation-container">
       <!-- links -->
       <div class="links">
-        <router-link to="/sell-online">Sell food online</router-link>
-        <router-link to="/login">Login to personal account</router-link>
+        <router-link to="/sell-online">
+          <img
+            src="../assets/sell_online_image.svg"
+            alt="Sell food online"
+            style="height: 2.4em"
+          />
+        </router-link>
+        <router-link to="/auth">
+          <img
+            src="../assets/sell_online_image.svg"
+            alt="auth"
+            style="height: 2.4em"
+          />
+        </router-link>
 
         <div class="language-switcher">
           <select v-model="selectedLanguage">
-            <option value="en">English</option>
-            <option value="ua">Ukraine</option>
-            <option value="ru">Russian</option>
+            <option value="en">EN</option>
+            <option value="ua">UA</option>
+            <option value="ru">RU</option>
             <!-- Add other languages as needed -->
           </select>
         </div>
@@ -51,40 +65,37 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
 }
 
 .logo {
-  width: 100px; /* Ширина логотипа */
+  width: 60px; /* Ширина логотипа */
   height: auto;
+  padding-left: 5px;
 }
 
 .links {
   display: flex;
-  gap: 1em;
+  gap: 4.125em;
 }
 
 .links a {
   text-decoration: none;
-  color: #fff; /* Цвет ссылок */
+  color: #fdfcfa; /* Цвет ссылок */
 }
 
 .language-switcher {
   position: relative; /* Установите относительное позиционирование */
-  margin-left: 0.1em; /* Переместите элемент в правую часть */
+  display: flex;
+  align-items: center;
 }
 
 .language-switcher select {
-  background-color: #fff;
-  color: #333;
+  background-color: #607832;
+  color: #000000;
   border: none;
-  padding: 1px;
+  padding: 4px;
   border-radius: 5px;
   cursor: pointer;
-  max-width: 150px; /* Ограничьте максимальную ширину выпадающего списка */
-  overflow: hidden; /* Скрыть выпадающую часть списка, если она не помещается */
-  text-overflow: ellipsis; /* Добавьте многоточие, если текст не помещается */
-  white-space: nowrap; /* Запретите перенос текста */
 }
 
 .navigation-container {
@@ -109,6 +120,11 @@ export default {
 
   .language-switcher select {
     max-width: 100%; /* Сделайте выпадающий список 100% шириной экрана */
+  }
+
+  .logo {
+    width: 50px; /* Ширина логотипа */
+    height: auto;
   }
 }
 </style>
