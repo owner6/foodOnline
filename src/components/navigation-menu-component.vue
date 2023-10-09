@@ -21,7 +21,7 @@
         </router-link>
         <router-link to="/auth">
           <img
-            src="../assets/sell_online_image.svg"
+            src="../assets/authentification.svg"
             alt="auth"
             style="height: 2.4em"
           />
@@ -60,15 +60,15 @@ export default {
 
 <style>
 .navigation-menu-component {
-  background-color: #607832; /* Цвет фона шапки */
-  color: #fdfcfa; /* Цвет текста */
+  background-color: #607832; /* The background color of the hat */
+  color: #fdfcfa; /* Text color */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  width: 60px; /* Ширина логотипа */
+  width: 60px; /* Logo width */
   height: auto;
   padding-left: 5px;
 }
@@ -80,18 +80,18 @@ export default {
 
 .links a {
   text-decoration: none;
-  color: #fdfcfa; /* Цвет ссылок */
+  color: #fdfcfa; /* Link color */
 }
 
 .language-switcher {
-  position: relative; /* Установите относительное позиционирование */
+  position: relative; /* Set relative positioning */
   display: flex;
   align-items: center;
 }
 
 .language-switcher select {
   background-color: #607832;
-  color: #000000;
+  color: #fdfcfa;
   border: none;
   padding: 4px;
   border-radius: 5px;
@@ -103,15 +103,15 @@ export default {
   margin-left: 10%;
 }
 
-/* Адаптивные стили для */
+/* Adaptive styles for */
 @media (max-width: 375px) {
-  /* iPhone 13 портретная ориентация */
+  /* Phone portrait orientation */
   .navigation-menu-component {
-    padding: 10px; /* Уменьшите отступы для меньших экранов */
+    padding: 10px; /* Reduce the indentation for smaller screens */
   }
 
   .navigation-container {
-    margin-left: 0; /* Уберите левый отступ для меньших экранов */
+    margin-left: 0; /* Remove the left margin for smaller screens */
   }
 
   .links {
@@ -120,11 +120,6 @@ export default {
 
   .language-switcher select {
     max-width: 100%; /* Сделайте выпадающий список 100% шириной экрана */
-  }
-
-  .logo {
-    width: 50px; /* Ширина логотипа */
-    height: auto;
   }
 }
 </style>

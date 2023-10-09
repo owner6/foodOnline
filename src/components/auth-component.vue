@@ -1,6 +1,6 @@
 <template>
   <div class="auth-component"></div>
-  <p>auth-component</p>
+  <p>auth-component1</p>
 </template>
 
 <script>
