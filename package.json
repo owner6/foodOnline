@@ -17,7 +17,7 @@
     "volar-service-vetur": "^0.0.13",
     "vue": "^3.2.13",
     "vue-cli-plugin-element": "^1.0.1",
-    "vue-router": "^4.0.3",
+    "vue-router": "^4.0.13",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

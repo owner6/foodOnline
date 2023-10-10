@@ -1,6 +1,5 @@
 <template>
   <div class="ad-form-component"></div>
-  <p>ad-form-component</p>
 </template>
 
 <script>

@@ -1,6 +1,5 @@
 <template>
   <div class="ad-details-component"></div>
-  <p>ad-details-component</p>
 </template>
 
 <script>

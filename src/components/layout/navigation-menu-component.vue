@@ -4,7 +4,13 @@
     <router-link to="/">
       <!-- logo -->
       <div class="logo-container">
-        <img src="../assets/food-online-logo.png" alt="logo" class="logo" />
+        <router-link to="/home">
+          <img
+            src="../../assets/food-online-logo.png"
+            alt="logo"
+            class="logo"
+          />
+        </router-link>
       </div>
     </router-link>
     <!-- Navigation Container -->
@@ -14,14 +20,14 @@
       <div class="links">
         <router-link to="/sell-online">
           <img
-            src="../assets/sell_online_image.svg"
+            src="../../assets/sell_online_image.svg"
             alt="Sell food online"
             style="height: 2.4em"
           />
         </router-link>
         <router-link to="/auth">
           <img
-            src="../assets/authentification.svg"
+            src="../../assets/authentification.svg"
             alt="auth"
             style="height: 2.4em"
           />

@@ -1,6 +1,5 @@
 <template>
   <div class="user-panel-component"></div>
-  <p>user-panel-component</p>
 </template>
 
 <script>

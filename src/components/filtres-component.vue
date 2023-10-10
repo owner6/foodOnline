@@ -1,6 +1,5 @@
 <template>
   <div class="filtres-component"></div>
-  <p>filtres-component</p>
 </template>
 
 <script>
