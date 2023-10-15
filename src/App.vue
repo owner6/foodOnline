@@ -2,56 +2,46 @@
   <div id="app">
     <!-- Your HTML content goes here -->
     <navigationMenuComponent />
-    <authComponent />
-    <adComponent />
-    <adDetailsComponent />
-    <adFormComponent />
-    <adListComponent />
-    <filtresComponent />
+    <router-view></router-view>
+    <button type="button" class="btn" @click="showModal">Open Modal!</button>
+    <!-- Include the modal here -->
+    <modalComponent v-show="isModalVisible" @close="closeModal" />
     <footerComponent />
-    <userPanelComponent />
   </div>
 </template>
 
 <script>
 import navigationMenuComponent from "./components/layout/navigation-menu-component.vue";
-import authComponent from "./components/auth-component.vue";
-import adComponent from "./components/ad-component.vue";
-import adDetailsComponent from "./components/ad-details-component.vue";
-import adFormComponent from "./components/ad-form-component.vue";
-import adListComponent from "./components/ad-list-component.vue";
-import filtresComponent from "./components/filtres-component.vue";
 import footerComponent from "./components/layout/footer-component.vue";
-import userPanelComponent from "./components/user-panel-component.vue";
+import modalComponent from "./components/ui/modal-component.vue";
 
 export default {
   // Your component logic goes here
   name: "app",
   components: {
     navigationMenuComponent,
-    authComponent,
-    adComponent,
-    adDetailsComponent,
-    adFormComponent,
-    adListComponent,
-    filtresComponent,
     footerComponent,
-    userPanelComponent,
+    modalComponent,
   },
-  props: {},
   data() {
-    return {};
+    return {
+      isModalVisible: false,
+    };
   },
-  computed: {},
-  methods: {},
-  watch: {},
-  mounted() {},
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+  },
 };
 </script>
 
 <style>
 * {
-  margin: 0;
+  margin: 0px;
 }
 /* Your CSS styles go here */
 #app {

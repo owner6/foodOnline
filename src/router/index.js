@@ -1,20 +1,38 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AuthComponent from "../components/auth-component.vue";
+import HomeView from "../components/HomeView.vue";
+import About from "../views/about-component.vue";
 
 const routes = [
   {
-    patch: "/",
-    name: "home",
+    path: "/",
+    component: HomeView,
+  },
+  {
+    path: "/home",
+    component: HomeView,
+  },
+  {
+    path: "/sell",
     component: "",
   },
   {
-    path: "/auth",
-    name: "auth",
-    component: AuthComponent,
+    path: "/about",
+    component: About,
   },
   {
-    patch: "/aboutUs",
-    name: "aboutUs",
+    path: "/contacts",
+    component: "",
+  },
+  {
+    path: "/promotions",
+    component: "",
+  },
+  {
+    path: "/delivery",
+    component: "",
+  },
+  {
+    path: "/return",
     component: "",
   },
 ];
