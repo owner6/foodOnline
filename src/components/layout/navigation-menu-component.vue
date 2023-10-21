@@ -1,38 +1,29 @@
 <template>
   <div class="navigation-menu-component">
     <!-- Logo Container -->
-    <router-link to="/">
-      <!-- logo -->
+    <router-link to="/home">
       <div class="logo-container">
-        <router-link to="/home">
-          <img
-            src="../../assets/food-online-logo.png"
-            alt="logo"
-            class="logo"
-          />
-        </router-link>
+        <img src="@/assets/food-online-logo.png" alt="logo" class="logo" />
       </div>
     </router-link>
     <!-- Navigation Container -->
-
     <div class="navigation-container">
       <!-- links -->
       <div class="links">
-        <router-link to="/sell-online">
+        <router-link to="/sell">
           <img
-            src="../../assets/sell_online_image.svg"
+            src="@/assets/sell_online_image.svg"
             alt="Sell food online"
             style="height: 2.4em"
           />
         </router-link>
-        <div @click="showModal = true">
+        <div @click="showAuthForm">
           <img
-            src="../../assets/authentification.svg"
+            src="@/assets/authentification.svg"
             alt="auth"
             style="height: 2.4em"
           />
         </div>
-
         <div class="language-switcher">
           <select v-model="selectedLanguage">
             <option value="en">EN</option>
@@ -44,64 +35,28 @@
       </div>
     </div>
   </div>
-
-  <!-- Модальне вікно -->
-  <div class="modal" v-if="showModal">
-    <div class="modal-content">
-      <!-- Форма логіну -->
-      <form v-if="loginMode" @submit.prevent="login">
-        <h2>Login</h2>
-        <input type="text" v-model="email" placeholder="Email" />
-        <input type="password" v-model="password" placeholder="Password" />
-        <button type="submit">Login</button>
-      </form>
-
-      <!-- Форма реєстрації -->
-      <form v-else @submit.prevent="register">
-        <h2>Register</h2>
-        <input type="text" v-model="firstname" placeholder="Firstname" />
-        <input type="text" v-model="lastname" placeholder="Lastname" />
-        <input type="text" v-model="phone" placeholder="Phone" />
-        <input type="email" v-model="email" placeholder="Email" />
-        <input type="password" v-model="password" placeholder="Password" />
-        <button type="submit">Register</button>
-      </form>
-
-      <!-- Кнопка для переключення режиму -->
-      <button @click="toggleMode">
-        {{ loginMode ? "Register" : "Login" }}
-      </button>
-
-      <!-- Button to close the modal window -->
-      <button @click="closeModal">Закрити</button>
-    </div>
-  </div>
+  <!-- Display the authentication form only if isAuthFormVisible is true -->
+  <vPopup v-if="isAuthFormVisible" @close="hideAuthForm" />
 </template>
 
 <script>
+import vPopup from "@/components/ui/v-popup.vue";
+
 export default {
   name: "navigation-menu-component",
-  components: {},
+  components: {
+    vPopup,
+  },
   data() {
     return {
       selectedLanguage: "en",
-      showModal: false,
-      loginMode: true, // A state variable for mode switching
-      email: "",
-      password: "",
-      firstname: "",
-      lastname: "",
-      phone: "",
+      isAuthFormVisible: false,
     };
   },
   methods: {
-    closeModal() {
-      this.showModal = false;
+    showAuthForm() {
+      this.isAuthFormVisible = true;
     },
-    toggleMode() {
-      this.loginMode = !this.loginMode; // Switch screen mode
-    },
-    // Додайте методи login та register для обробки входу та реєстрації
   },
 };
 </script>

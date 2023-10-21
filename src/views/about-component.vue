@@ -29,8 +29,8 @@ export default {
 </script>
 
 <style scoped>
-.about-us {
-  max-width: 800px;
+.about-component {
+  max-width: 1100px;
   margin: 0 auto;
   padding: 20px;
   text-align: left;

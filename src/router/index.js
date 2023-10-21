@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../components/HomeView.vue";
 import About from "../views/about-component.vue";
+import SellOnline from "../views/sell-online-component.vue";
 
 const routes = [
   {
@@ -13,7 +14,7 @@ const routes = [
   },
   {
     path: "/sell",
-    component: "",
+    component: SellOnline,
   },
   {
     path: "/about",
