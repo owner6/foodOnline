@@ -49,6 +49,9 @@
           type="password"
           v-model="password"
         />
+        <div v-if="password !== confirmPassword" class="validation-error">
+          Password do not match
+        </div>
       </div>
       <div class="flex-row" v-if="isRegistering">
         <input
@@ -91,7 +94,29 @@ export default {
   },
   methods: {
     login() {},
-    register() {},
+    register() {
+      if (this.validateRefistration()) {
+        console.log("Registration data:", {
+          email: this.email,
+          phone: this.phone,
+          lastname: this.lastname,
+          firstname: this.firstname,
+          password: this.password,
+        });
+        this.clearForm();
+      }
+    },
+
+    validateRefistration() {
+      if (
+        !this.email ||
+        !this.password ||
+        (this.isRegistering && this.password !== this.confirmPassword)
+      ) {
+        return false;
+      }
+      return true;
+    },
     toggleMode() {
       this.isRegistering = !this.isRegistering;
       this.clearForm();
@@ -119,9 +144,10 @@ export default {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 .login-form {
-  position: absolute;
+  position: fixed;
   top: 44%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -131,6 +157,7 @@ export default {
   border: 1px solid #607832;
   box-shadow: 0px 7px 16px -3px rgba(0, 0, 0, 0.5);
   background: #607832;
+  border-radius: 0.313rem;
   background: -webkit-gradient(
     left top,
     right top,
@@ -151,7 +178,7 @@ export default {
 }
 .login-form:before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: -2px;
   left: 0;
   height: 2px;

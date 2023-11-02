@@ -31,7 +31,7 @@ export default {
 }
 /* Your CSS styles go here */
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

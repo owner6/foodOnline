@@ -68,6 +68,8 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
+  margin: 0 auto; /* Центрирование по горизонтали */
 }
 
 .logo {
