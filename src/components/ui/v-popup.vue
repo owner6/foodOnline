@@ -1,6 +1,10 @@
 <template>
-  <div class="login-container" v-if="!showAuthForm">
-    <form class="login-form">
+  <div class="login-container" v-if="showAuthForm">
+    <div class="login-form">
+      <div v-if="password !== confirmPassword" class="validation-error">
+        Введите пароль
+      </div>
+
       <button class="close-button" @click="hideAuthForm">X</button>
       <div class="header">
         <h2>{{ isRegistering ? "Register" : "Login" }}</h2>
@@ -49,9 +53,6 @@
           type="password"
           v-model="password"
         />
-        <div v-if="password !== confirmPassword" class="validation-error">
-          Password do not match
-        </div>
       </div>
       <div class="flex-row" v-if="isRegistering">
         <input
@@ -62,12 +63,9 @@
           v-model="confirmPassword"
         />
       </div>
-      <input
-        class="lf--submit"
-        type="submit"
-        @click="isRegistering ? register() : login()"
-        :value="isRegistering ? 'Sign Up' : 'Log In'"
-      />
+      <button class="lf--submit" @click="isRegistering ? register() : login()">
+        {{ isRegistering ? "Sign Up" : "Log In" }}
+      </button>
       <a class="lf--forgot" href="#" @click="toggleMode">
         {{
           isRegistering
@@ -75,14 +73,17 @@
             : "Don't have an account? Sign Up"
         }}
       </a>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      API_URL: "http://localhost:3000",
       email: "",
       phone: "",
       lastname: "",
@@ -90,24 +91,36 @@ export default {
       password: "",
       confirmPassword: "",
       isRegistering: false,
+      showAuthForm: true,
     };
   },
+
   methods: {
-    login() {},
-    register() {
-      if (this.validateRefistration()) {
-        console.log("Registration data:", {
-          email: this.email,
-          phone: this.phone,
-          lastname: this.lastname,
-          firstname: this.firstname,
-          password: this.password,
+    async login() {},
+
+    async register() {
+      this.isRegistering = true;
+      await axios
+        .post(
+          `${this.API_URL}/auth/registration`,
+          {
+            email: this.email,
+            phone: this.phone,
+            lastname: this.lastname,
+            firstname: this.firstname,
+            password: this.password,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then(({ data }) => {
+          this.user = data;
+          this.isRegistering = false;
         });
-        this.clearForm();
-      }
     },
 
-    validateRefistration() {
+    validateRegistration() {
       if (
         !this.email ||
         !this.password ||
@@ -117,10 +130,12 @@ export default {
       }
       return true;
     },
+
     toggleMode() {
       this.isRegistering = !this.isRegistering;
       this.clearForm();
     },
+
     clearForm() {
       this.email = "";
       this.phone = "";
@@ -128,6 +143,11 @@ export default {
       this.firstname = "";
       this.password = "";
       this.confirmPassword = "";
+    },
+
+    hideAuthForm() {
+      this.showAuthForm = !this.showAuthForm;
+      window.location.reload();
     },
   },
 };
