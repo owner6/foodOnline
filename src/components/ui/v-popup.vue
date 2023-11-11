@@ -91,12 +91,39 @@ export default {
       password: "",
       confirmPassword: "",
       isRegistering: false,
+      isLoading: false,
       showAuthForm: true,
     };
   },
 
   methods: {
-    async login() {},
+    async login() {
+      try {
+        const response = await axios.post(
+          `${this.API_URL}/auth/login`,
+          {
+            email: this.email,
+            password: this.password,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+
+        const token = response.data.token;
+
+        localStorage.setItem("authToken", token);
+
+        console.log(token);
+
+        this.user = response.data.user;
+        this.isLoading = false;
+
+        console.log("Logged in", response.data);
+      } catch (error) {
+        console.error("Login error", error);
+      }
+    },
 
     async register() {
       this.isRegistering = true;
