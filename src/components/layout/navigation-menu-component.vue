@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-menu-component">
     <!-- Logo Container -->
-    <router-link to="/home">
+    <router-link to="/">
       <div class="logo-container">
         <img src="@/assets/food-online-logo.png" alt="logo" class="logo" />
       </div>
@@ -69,7 +69,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin: 0 auto; /* Центрирование по горизонтали */
+  margin: 0 auto;
 }
 
 .logo {
@@ -84,7 +84,7 @@ export default {
 }
 
 .links a {
-  color: #fdfcfa; /* Link color */
+  color: #fdfcfa;
 }
 
 .language-switcher {

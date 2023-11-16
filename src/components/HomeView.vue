@@ -44,6 +44,7 @@ export default {
   padding: 20px;
   border-radius: 10px;
   color: rgb(255, 255, 255);
+  width: 464px;
 }
 
 .search-title {
@@ -78,5 +79,18 @@ export default {
 
 .search-input button:hover {
   background-color: #0056b3;
+}
+
+@media screen and (max-width: 600px) {
+  .search-container {
+    width: 264px;
+    padding: 0;
+    left: 15%;
+  }
+
+  .search-input {
+    width: 264px;
+    margin: 0, auto;
+  }
 }
 </style>

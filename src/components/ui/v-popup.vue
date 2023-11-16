@@ -96,6 +96,12 @@ export default {
     };
   },
 
+  computed: {
+    hasAuthToken() {
+      return localStorage.getItem("authToken") !== null;
+    },
+  },
+
   methods: {
     async login() {
       try {
@@ -114,12 +120,14 @@ export default {
 
         localStorage.setItem("authToken", token);
 
-        console.log(token);
-
         this.user = response.data.user;
         this.isLoading = false;
 
         console.log("Logged in", response.data);
+
+        this.$router.push("/mypage");
+
+        this.hideAuthForm();
       } catch (error) {
         console.error("Login error", error);
       }
@@ -144,6 +152,7 @@ export default {
         .then(({ data }) => {
           this.user = data;
           this.isRegistering = false;
+          this.hideAuthForm();
         });
     },
 

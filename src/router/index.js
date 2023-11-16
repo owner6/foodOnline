@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../components/HomeView.vue";
 import About from "../views/about-component.vue";
 import SellOnline from "../views/sell-online-component.vue";
+import MyPage from "../views/my-page-component.vue";
 
 const routes = [
   {
@@ -11,6 +12,11 @@ const routes = [
   {
     path: "/home",
     component: HomeView,
+  },
+  {
+    path: "/mypage",
+    component: MyPage,
+    meta: { requiresAuth: true },
   },
   {
     path: "/sell",
@@ -41,6 +47,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+// Добавляем глобальную навигацию, которая проверяет наличие токена при каждом переходе
+router.beforeEach((to, from, next) => {
+  const authToken = localStorage.getItem("authToken");
+
+  if (to.matched.some((record) => record.meta.requiresAuth) && !authToken) {
+    // Если мета-информация требует авторизации и токен отсутствует, перенаправляем на страницу входа
+    next("/home");
+  } else {
+    next();
+  }
 });
 
 export default router;
