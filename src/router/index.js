@@ -15,8 +15,8 @@ const routes = [
   },
   {
     path: "/mypage",
+    name: "MyPage",
     component: MyPage,
-    meta: { requiresAuth: true },
   },
   {
     path: "/sell",
@@ -49,12 +49,10 @@ const router = createRouter({
   routes,
 });
 
-// Добавляем глобальную навигацию, которая проверяет наличие токена при каждом переходе
 router.beforeEach((to, from, next) => {
   const authToken = localStorage.getItem("authToken");
 
   if (to.matched.some((record) => record.meta.requiresAuth) && !authToken) {
-    // Если мета-информация требует авторизации и токен отсутствует, перенаправляем на страницу входа
     next("/home");
   } else {
     next();

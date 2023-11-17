@@ -2,7 +2,7 @@
   <div class="login-container" v-if="showAuthForm">
     <div class="login-form">
       <div v-if="password !== confirmPassword" class="validation-error">
-        Введите пароль
+        Enter password
       </div>
 
       <button class="close-button" @click="hideAuthForm">X</button>
@@ -79,6 +79,7 @@
 
 <script>
 import axios from "axios";
+import router from "../../router/index.js";
 
 export default {
   data() {
@@ -121,13 +122,13 @@ export default {
         localStorage.setItem("authToken", token);
 
         this.user = response.data.user;
+
         this.isLoading = false;
 
         console.log("Logged in", response.data);
 
-        this.$router.push("/mypage");
-
-        this.hideAuthForm();
+        router.push({ path: "/mypage" });
+        this.showAuthForm = !this.showAuthForm;
       } catch (error) {
         console.error("Login error", error);
       }

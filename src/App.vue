@@ -12,7 +12,6 @@ import navigationMenuComponent from "./components/layout/navigation-menu-compone
 import footerComponent from "./components/layout/footer-component.vue";
 
 export default {
-  // Your component logic goes here
   name: "app",
   components: {
     navigationMenuComponent,

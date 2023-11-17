@@ -10,7 +10,7 @@
     <div class="navigation-container">
       <!-- links -->
       <div class="links">
-        <router-link to="/sell">
+        <router-link to="/mypage">
           <img
             src="@/assets/sell_online_image.svg"
             alt="Sell food online"
@@ -29,13 +29,12 @@
             <option value="en">EN</option>
             <option value="ua">UA</option>
             <option value="ru">RU</option>
-            <!-- Add other languages as needed -->
           </select>
         </div>
       </div>
     </div>
   </div>
-  <!-- Display the authentication form only if isAuthFormVisible is true -->
+
   <vPopup v-if="isAuthFormVisible" @close="hideAuthForm" />
 </template>
 
