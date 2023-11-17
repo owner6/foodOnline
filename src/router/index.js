@@ -8,10 +8,12 @@ const routes = [
   {
     path: "/",
     component: HomeView,
+    meta: { requiresAuth: true },
   },
   {
     path: "/home",
     component: HomeView,
+    meta: { requiresAuth: true },
   },
   {
     path: "/mypage",
@@ -52,10 +54,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const authToken = localStorage.getItem("authToken");
 
-  if (to.matched.some((record) => record.meta.requiresAuth) && !authToken) {
-    next("/home");
+  if (to.matched.some((record) => record.meta.requiresAuth) && authToken) {
+    next("/mypage"); // Redirect to MyPage if the route requires authentication and there's a token
   } else {
-    next();
+    next(); // Allow access to the route
   }
 });
 
