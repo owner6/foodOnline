@@ -125,9 +125,8 @@ export default {
 
         this.isLoading = false;
 
-        console.log("Logged in", response.data);
-
         router.push({ path: "/mypage" });
+        window.location.reload();
         this.showAuthForm = !this.showAuthForm;
       } catch (error) {
         console.error("Login error", error);
