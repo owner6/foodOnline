@@ -134,9 +134,8 @@ export default {
     },
 
     async register() {
-      this.isRegistering = true;
-      await axios
-        .post(
+      try {
+        const response = await axios.post(
           `${this.API_URL}/auth/registration`,
           {
             email: this.email,
@@ -148,12 +147,26 @@ export default {
           {
             headers: { "Content-Type": "application/json" },
           }
-        )
-        .then(({ data }) => {
-          this.user = data;
-          this.isRegistering = false;
-          this.hideAuthForm();
-        });
+        );
+
+        const token = response.data.token;
+
+        localStorage.setItem("authToken", token);
+
+        this.user = response.data.user;
+
+        this.isLoading = false;
+
+        await this.login();
+
+        router.push({ path: "/mypage" });
+
+        window.location.reload();
+
+        this.showAuthForm = !this.showAuthForm;
+      } catch (error) {
+        console.error("Registration error", error);
+      }
     },
 
     validateRegistration() {
