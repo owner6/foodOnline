@@ -19,18 +19,27 @@ export default {
       hasAuthToken: false,
     };
   },
-  created() {
-    this.hasAuthToken = localStorage.getItem("authToken") !== null;
+  mounted() {
+    this.checkAuthToken();
+  },
+  watch: {
+    hasAuthToken: function (newVal) {
+      if (!newVal) {
+        this.logout();
+      }
+    },
   },
   methods: {
     logoutAndRedirect() {
       this.logout();
     },
     logout() {
-      window.location.reload();
       localStorage.removeItem("authToken");
       this.user = null;
       this.hasAuthToken = false;
+    },
+    checkAuthToken() {
+      this.hasAuthToken = localStorage.getItem("authToken") !== null;
     },
     API_URL() {
       return "http://localhost:3000";

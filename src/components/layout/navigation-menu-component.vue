@@ -1,14 +1,12 @@
 <template>
   <div class="navigation-menu-component">
-    <!-- Logo Container -->
     <router-link to="/">
       <div class="logo-container">
         <img src="@/assets/food-online-logo.png" alt="logo" class="logo" />
       </div>
     </router-link>
-    <!-- Navigation Container -->
+
     <div class="navigation-container">
-      <!-- links -->
       <div class="links">
         <router-link to="/mypage">
           <img
@@ -35,16 +33,16 @@
     </div>
   </div>
 
-  <vPopup v-if="isAuthFormVisible" @close="hideAuthForm" />
+  <vAuthPopup v-if="isAuthFormVisible" @close="hideAuthForm" />
 </template>
 
 <script>
-import vPopup from "@/components/ui/v-popup.vue";
+import vAuthPopup from "@/components/ui/v-auth-popup.vue";
 
 export default {
   name: "navigation-menu-component",
   components: {
-    vPopup,
+    vAuthPopup,
   },
   data() {
     return {
@@ -167,7 +165,6 @@ export default {
   }
 }
 
-/* Adaptive styles for */
 @media (max-width: 375px) {
   .navigation-menu-component {
     background-color: #607832;
@@ -184,9 +181,8 @@ export default {
     gap: 1.125em;
   }
 
-  /* Phone portrait orientation */
   .navigation-container {
-    margin-left: 0; /* Remove the left margin for smaller screens */
+    margin-left: 0;
   }
 
   .language-switcher {
@@ -196,7 +192,7 @@ export default {
   }
 
   .language-switcher select {
-    max-width: 100%; /* we make a drop-down list 100% screen width */
+    max-width: 100%;
   }
 }
 

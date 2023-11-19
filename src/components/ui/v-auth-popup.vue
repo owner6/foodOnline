@@ -5,7 +5,7 @@
         Enter password
       </div>
 
-      <button class="close-button" @click="hideAuthForm">X</button>
+      <button v-on:click="hideAuthForm" class="close-button">X</button>
       <div class="header">
         <h2>{{ isRegistering ? "Register" : "Login" }}</h2>
       </div>
@@ -127,7 +127,7 @@ export default {
 
         router.push({ path: "/mypage" });
         window.location.reload();
-        this.showAuthForm = !this.showAuthForm;
+        this.showAuthForm = false;
       } catch (error) {
         console.error("Login error", error);
       }
@@ -163,7 +163,7 @@ export default {
 
         window.location.reload();
 
-        this.showAuthForm = !this.showAuthForm;
+        this.showAuthForm = false;
       } catch (error) {
         console.error("Registration error", error);
       }
@@ -195,7 +195,7 @@ export default {
     },
 
     hideAuthForm() {
-      this.showAuthForm = !this.showAuthForm;
+      this.showAuthForm = false;
       window.location.reload();
     },
   },
