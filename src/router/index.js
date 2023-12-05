@@ -55,9 +55,9 @@ router.beforeEach((to, from, next) => {
   const authToken = localStorage.getItem("authToken");
 
   if (to.matched.some((record) => record.meta.requiresAuth) && authToken) {
-    next("/mypage"); // Redirect to MyPage if the route requires authentication and there's a token
+    next("/mypage");
   } else {
-    next(); // Allow access to the route
+    next();
   }
 });
 

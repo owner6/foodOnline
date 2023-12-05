@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  // Your component logic goes here
   name: "user-panel-component",
   components: {},
   props: {},
