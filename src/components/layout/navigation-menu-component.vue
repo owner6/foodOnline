@@ -29,6 +29,9 @@
             <option value="ru">RU</option>
           </select>
         </div>
+        <router-link v-if="isUserAuthenticated" to="/adding">
+          <img src="@/assets/new_ad.svg" alt="new add" style="height: 2.4em" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -49,6 +52,11 @@ export default {
       selectedLanguage: "en",
       isAuthFormVisible: false,
     };
+  },
+  computed: {
+    isUserAuthenticated() {
+      return true;
+    },
   },
   methods: {
     showAuthForm() {

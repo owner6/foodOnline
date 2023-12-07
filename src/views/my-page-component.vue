@@ -36,6 +36,7 @@ export default {
   methods: {
     logoutAndRedirect() {
       authService.logout();
+      window.location.reload();
     },
     checkAuthToken() {
       this.hasAuthToken = authService.checkAuthToken();
