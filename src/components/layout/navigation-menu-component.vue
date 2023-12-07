@@ -29,7 +29,7 @@
             <option value="ru">RU</option>
           </select>
         </div>
-        <router-link v-if="isUserAuthenticated" to="/adding">
+        <router-link v-if="hasAuthToken" to="/adding">
           <img src="@/assets/new_ad.svg" alt="new add" style="height: 2.4em" />
         </router-link>
       </div>
@@ -54,8 +54,8 @@ export default {
     };
   },
   computed: {
-    isUserAuthenticated() {
-      return true;
+    hasAuthToken() {
+      return localStorage.getItem("authToken") !== null;
     },
   },
   methods: {
