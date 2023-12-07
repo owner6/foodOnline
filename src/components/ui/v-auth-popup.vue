@@ -80,11 +80,12 @@
 <script>
 import axios from "axios";
 import router from "../../router/index.js";
+import { API_URL } from "@/constants/apiUrl";
 
 export default {
   data() {
     return {
-      API_URL: "http://localhost:3000",
+      API_URL: API_URL,
       email: "",
       phone: "",
       lastname: "",

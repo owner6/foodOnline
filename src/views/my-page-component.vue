@@ -1,3 +1,4 @@
+<!-- MyPageComponent.vue -->
 <template>
   <div class="my-page-component">
     <template v-if="hasAuthToken">
@@ -11,6 +12,9 @@
 </template>
 
 <script>
+import authService from "@/services/authService";
+import { API_URL } from "@/constants/apiUrl";
+
 export default {
   name: "MyPageComponent",
   data() {
@@ -25,25 +29,18 @@ export default {
   watch: {
     hasAuthToken: function (newVal) {
       if (!newVal) {
-        this.logout();
+        authService.logout();
       }
     },
   },
   methods: {
     logoutAndRedirect() {
-      this.logout();
-    },
-    logout() {
-      localStorage.removeItem("authToken");
-      this.user = null;
-      this.hasAuthToken = false;
+      authService.logout();
     },
     checkAuthToken() {
-      this.hasAuthToken = localStorage.getItem("authToken") !== null;
+      this.hasAuthToken = authService.checkAuthToken();
     },
-    API_URL() {
-      return "http://localhost:3000";
-    },
+    API_URL,
   },
 };
 </script>
