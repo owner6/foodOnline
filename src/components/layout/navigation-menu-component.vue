@@ -8,7 +8,7 @@
 
     <div class="navigation-container">
       <div class="links">
-        <router-link to="/mypage">
+        <router-link v-if="hasAuthToken" to="/mypage">
           <img
             src="@/assets/sell_online_image.svg"
             alt="Sell food online"

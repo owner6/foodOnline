@@ -60,6 +60,7 @@ export default {
   background-color: #fdfcfa;
   color: #35392e;
   text-align: center;
+  padding: 2px;
 }
 
 .footer-content {

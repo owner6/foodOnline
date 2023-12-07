@@ -3,6 +3,7 @@ import HomeView from "../components/HomeView.vue";
 import About from "../views/about-component.vue";
 import SellOnline from "../views/sell-online-component.vue";
 import MyPage from "../views/my-page-component.vue";
+import Adding from "../views/v-cart-component.vue";
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: "/mypage",
     name: "MyPage",
     component: MyPage,
+  },
+  {
+    path: "/adding",
+    name: "Adding",
+    component: Adding,
   },
   {
     path: "/sell",

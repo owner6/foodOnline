@@ -261,7 +261,7 @@ export default {
   background: transparent;
   border: none;
   font-size: 1.5em;
-  color: #fff;
+  color: #fdfcfa;
   cursor: pointer;
   outline: none;
 }
