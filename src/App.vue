@@ -34,7 +34,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background-color: #fdfcfa;
+  background-color: #e6e8df;
 }
 
 .wrapper {

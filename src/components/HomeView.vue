@@ -43,7 +43,7 @@ export default {
   left: 20%;
   padding: 20px;
   border-radius: 10px;
-  color: rgb(255, 255, 255);
+  color: #e6e8df;
   width: 464px;
 }
 
@@ -58,6 +58,7 @@ export default {
   margin-top: 39px;
   position: relative;
   z-index: 1;
+  background-color: #e6e8df;
 }
 
 .search-input input {

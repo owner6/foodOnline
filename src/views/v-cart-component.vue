@@ -1,10 +1,10 @@
 <template>
   <div class="v-cart-component">
-    <h1>Add Your Advertisement</h1>
-
     <form @submit.prevent="submitAdForm">
-      <span>Describe in detail</span>
+      <h1>Add Your Advertisement</h1>
+
       <label for="adTitle">Title:</label>
+      <span>Describe in detail</span>
       <input type="text" id="adTitle" v-model="adTitle" required />
 
       <label for="adDescription">Description:</label>
@@ -43,7 +43,7 @@ export default {
 
 <style scoped>
 .v-cart-component {
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
   text-align: left;
@@ -53,20 +53,34 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 
 label {
   font-weight: bold;
+  margin-left: 40px;
+  border-radius: 5px;
 }
 
-input,
-textarea {
-  padding: 5px;
+input {
+  padding: 10px;
+  background-color: #e6e8df;
+  border: none;
+  margin: 0px 40px 0px 40px;
+  height: 20px;
+  width: 60%;
+  outline: none;
 }
 
-input,
 textarea {
   padding: 10px;
+  background-color: #e6e8df;
+  border: none;
+  margin: 0px 40px 0px 40px;
+  height: 200px;
+  outline: none;
+  resize: none;
 }
 
 button {
@@ -75,5 +89,15 @@ button {
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
+  width: auto;
+  margin: 0 40px 40px 40px;
+}
+
+span {
+  margin: 0px 0px 0px 40px;
+}
+
+h1 {
+  margin: 40px 0px 0px 40px;
 }
 </style>

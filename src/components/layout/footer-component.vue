@@ -57,7 +57,7 @@ export default {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #fdfcfa;
+  background-color: #e6e8df;
   color: #35392e;
   text-align: center;
   padding: 2px;
