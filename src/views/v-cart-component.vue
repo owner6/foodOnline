@@ -1,3 +1,4 @@
+<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="v-cart-component">
     <form @submit.prevent="submitAdForm">
@@ -7,24 +8,46 @@
       <span>Describe in detail</span>
       <input type="text" id="adTitle" v-model="adTitle" required />
 
+      <div @click="showCategoriesForm" class="categories-content">
+        <div class="list-categories">
+          <a>
+            <img
+              src="@/assets/categories-image.svg"
+              alt="auth"
+              style="height: 2.4em"
+            />
+          </a>
+        </div>
+        <div>
+          Categories
+        </div>
+      </div>
+
       <label for="adDescription">Description:</label>
       <span class="input-description">
         Provide a detailed description of your product
       </span>
       <textarea id="adDescription" v-model="adDescription" required></textarea>
-
       <button type="submit">Post Ad</button>
     </form>
   </div>
+
+  <addingNewAdPopup v-if="isCategoriesFormVisible" @close="hideCategoriesForm" />
 </template>
 
 <script>
+import addingNewAdPopup from "@/components/ui/adding-a-new-ad-popup.vue";
+
 export default {
   name: "AddAdPage",
+  components: {
+    addingNewAdPopup,
+  },
   data() {
     return {
       adTitle: "",
       adDescription: "",
+      isCategoriesFormVisible: false,
     };
   },
   methods: {
@@ -36,6 +59,9 @@ export default {
       // Reset the form fields after submission if needed
       this.adTitle = "";
       this.adDescription = "";
+    },
+    showCategoriesForm() {
+      this.isCategoriesFormVisible = true;
     },
   },
 };
@@ -85,7 +111,7 @@ textarea {
 
 button {
   padding: 10px;
-  background-color: #c07649;
+  background-color: #607932;
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
@@ -99,5 +125,15 @@ span {
 
 h1 {
   margin: 40px 0px 0px 40px;
+}
+
+.categories-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  margin: 0px 0px 0px 40px;
+  padding: 10px 25px 5px 20px;
+  background: #959d7e;
 }
 </style>
