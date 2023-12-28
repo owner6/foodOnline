@@ -5,7 +5,7 @@
         Enter password
       </div>
 
-      <button v-on:click="hideAuthForm" class="close-button">X</button>
+      <button v-on:click="hideAuthForm" class="close-button">&times;</button>
       <div class="header">
         <h2>{{ isRegistering ? "Register" : "Login" }}</h2>
       </div>
@@ -125,6 +125,11 @@ export default {
         this.user = response.data.user;
 
         this.isLoading = false;
+
+        // Delay token deletion by 10 seconds
+        setTimeout(() => {
+          localStorage.removeItem("authToken");
+        }, 10000);
 
         router.push({ path: "/mypage" });
         window.location.reload();

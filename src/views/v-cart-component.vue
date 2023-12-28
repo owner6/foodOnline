@@ -1,67 +1,91 @@
-<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="v-cart-component">
-    <form @submit.prevent="submitAdForm">
-      <h1>Add Your Advertisement</h1>
+    <form @submit.prevent="submitForm">
+      <h2>Форма создания объявления</h2>
 
-      <label for="adTitle">Title:</label>
-      <span>Describe in detail</span>
-      <input type="text" id="adTitle" v-model="adTitle" required />
+      <label for="title">Заголовок:</label>
+      <input type="text" id="title" v-model="formData.title" required />
 
-      <div @click="showCategoriesForm" class="categories-content">
-        <div class="list-categories">
-          <a>
-            <img
-              src="@/assets/categories-image.svg"
-              alt="auth"
-              style="height: 2.4em"
-            />
-          </a>
-        </div>
-        <div>
-          Categories
-        </div>
-      </div>
+      <label for="category">Категория:</label>
+      <select
+        class="categories-content"
+        id="category"
+        v-model="formData.category"
+        required
+      >
+        <option
+          class="category-item"
+          v-for="category in formData.categories"
+          :key="category.id"
+          :value="category.id"
+        >
+          {{ category.name }}
+        </option>
+      </select>
 
-      <label for="adDescription">Description:</label>
-      <span class="input-description">
-        Provide a detailed description of your product
-      </span>
-      <textarea id="adDescription" v-model="adDescription" required></textarea>
-      <button type="submit">Post Ad</button>
+      <label for="desc">Описание:</label>
+      <textarea id="desc" v-model="formData.desc" required></textarea>
+
+      <label for="price">Цена:</label>
+      <input type="number" id="price" v-model="formData.price" required />
+
+      <button type="submit">Создать объявление</button>
     </form>
   </div>
-
-  <addingNewAdPopup v-if="isCategoriesFormVisible" @close="hideCategoriesForm" />
 </template>
 
 <script>
-import addingNewAdPopup from "@/components/ui/adding-a-new-ad-popup.vue";
+import axios from "axios";
+import { API_URL } from "@/constants/apiUrl";
 
 export default {
-  name: "AddAdPage",
-  components: {
-    addingNewAdPopup,
-  },
   data() {
     return {
-      adTitle: "",
-      adDescription: "",
-      isCategoriesFormVisible: false,
+      formData: {
+        title: "",
+        desc: "",
+        price: null,
+        categories: [
+          { id: 1, name: "Gift boxes" },
+          { id: 2, name: "Bouquets of Food" },
+          { id: 3, name: "Sweet" },
+          { id: 4, name: "Eggs, dairy products" },
+          { id: 5, name: "Vegetable fat" },
+          { id: 6, name: "Animal fat" },
+          { id: 7, name: "Seeds" },
+          { id: 8, name: "Meat, meat products" },
+          { id: 9, name: "Fish sea food" },
+          { id: 10, name: "Cooking" },
+          { id: 11, name: "Sublimated products" },
+          { id: 12, name: "Fruits and vegetables" },
+          { id: 13, name: "Nuts and dried fruits" },
+          { id: 14, name: "Snacks" },
+          { id: 15, name: "Sauces and spices" },
+          { id: 16, name: "Conservation" },
+          { id: 17, name: "Freeze" },
+          { id: 18, name: "Drinks" },
+          { id: 19, name: "Baking" },
+        ],
+      },
     };
   },
   methods: {
-    submitAdForm() {
-      // You can handle the form submission logic here
-      // For example, send a request to your server to save the ad details
-      console.log("Ad Title:", this.adTitle);
-      console.log("Ad Description:", this.adDescription);
-      // Reset the form fields after submission if needed
-      this.adTitle = "";
-      this.adDescription = "";
+    async submitForm() {
+      try {
+        const response = await axios.post(`${API_URL}/products`, this.formData);
+
+        console.log("Server response:", response.data);
+
+        this.resetForm();
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
     },
-    showCategoriesForm() {
-      this.isCategoriesFormVisible = true;
+    resetForm() {
+      this.formData.title = "";
+      this.formData.desc = "";
+      this.formData.price = null;
+      this.formData.category = null;
     },
   },
 };
@@ -73,6 +97,10 @@ export default {
   margin: 0 auto;
   padding: 20px;
   text-align: left;
+}
+
+h2 {
+  padding: 20px;
 }
 
 form {
@@ -95,7 +123,7 @@ input {
   border: none;
   margin: 0px 40px 0px 40px;
   height: 20px;
-  width: 60%;
+  max-width: 100%;
   outline: none;
 }
 
@@ -128,12 +156,36 @@ h1 {
 }
 
 .categories-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 200px;
-  margin: 0px 0px 0px 40px;
-  padding: 10px 25px 5px 20px;
-  background: #959d7e;
+  display: block;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0px 40px 0 40px;
+  border: 1px solid #e6e8df;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #e6e8df;
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+.category-item {
+  background-color: #e6e8df;
+  padding: 10px;
+  border-radius: 5px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-item:hover {
+  background-color: #a0a0a0;
 }
 </style>

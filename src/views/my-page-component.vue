@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import authService from "@/services/authService";
+import authService from "@/api/services/authService.js";
 import { API_URL } from "@/constants/apiUrl";
 
 export default {
